@@ -1,0 +1,27 @@
+{
+  "name": "autoreffatlas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0-rc.12",
+    "figlet-promises": "^1.0.1",
+    "node-fetch": "^2.6.6",
+    "random-name": "^0.1.2",
+    "random-useragent": "^0.5.0",
+    "randomatic": "^3.1.1",
+    "readline-sync": "^1.4.10"
+  },
+  "bin": "./index.js",
+  "pkg":{
+    "script": "index.js",
+    "assets": ["node_modules/figlet-promises/fonts/ogre.flf", "node_modules/figlet-promises/**/*" ]
+  }
+}
