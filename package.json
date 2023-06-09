@@ -12,7 +12,6 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.12",
-    "figlet-promises": "^1.0.1",
     "node-fetch": "^2.6.6",
     "random-name": "^0.1.2",
     "random-useragent": "^0.5.0",
@@ -20,8 +19,11 @@
     "readline-sync": "^1.4.10"
   },
   "bin": "./index.js",
-  "pkg":{
+  "pkg": {
     "script": "index.js",
-    "assets": ["node_modules/figlet-promises/fonts/ogre.flf", "node_modules/figlet-promises/**/*" ]
+    "assets": [
+      "node_modules/figlet-promises/fonts/ogre.flf",
+      "node_modules/figlet-promises/**/*"
+    ]
   }
 }

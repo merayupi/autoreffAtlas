@@ -6,9 +6,6 @@ var random = require('random-name')
 const randomize = require('randomatic')
 
 const chalk = require('chalk')
-const figlet = require('figlet-promises');
-const Figlet = new figlet();
-let font = 'ogre';
 
 const randstr = length =>
     new Promise((resolve, reject) => {
@@ -181,10 +178,15 @@ const sleep = (ms) => {
 
 (async ()=> {
     console.clear()
-    await Figlet.loadFonts();
-    let banner = await Figlet.write("AutoReff Atlas",font);
-    console.log(chalk.bold.blue(banner))
-    console.log(chalk.bold.blue("                                 by: Conny                                  \n"))
+    console.log(`
+++++++++++++++++++++++++++++++++++++++++++++++++
++               BOT AUTO REFF ATLAS            +
+================================================
++                Author: Conny                 +
++                                              +
+++++++++++++++++++++++++++++++++++++++++++++++++
+  `);
+    console.info(' ')
     var tanyareff = readline.question(chalk.yellow('Link reff : '));
     var jumlah = readline.question(chalk.yellow('Jumlah reff : '))
 
@@ -211,12 +213,20 @@ const sleep = (ms) => {
             if(!regist.status == 204) return;
             await sleep(510)
 
-                let linkConfirm;
-                do {
-                    linkConfirm = await GetOtp(email.split("@")[0], email.split("@")[1]);
-                    console.log(chalk.green(`-> Wait for veriff link..`))
-
-                } while (!linkConfirm);
+            let linkConfirm; 
+            const maxAttempts = 10; 
+            
+            for (let attempt = 0; attempt < maxAttempts; attempt++) { 
+                linkConfirm = await GetOtp(email.split("@")[0], email.split("@")[1]); 
+                if (linkConfirm) break;
+                 
+                console.log(`---> Wait for veriff link..`); 
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                 
+            } 
+            if (!linkConfirm) { 
+                            console.log('Failed to get the veriff link after 5 attempts'); 
+            } else { 
 
             console.log(chalk.green(`-> Link confirm Found`))
             console.log(chalk.green('-> Mencoba SubmitReff...'))
@@ -232,6 +242,7 @@ const sleep = (ms) => {
 
             console.log(chalk.green(`-> Sukses Reff ke ${i}`))
             console.log(chalk.cyan('========================================================================='))
+        }
         } catch (error) {
             console.log(error)
             i--;
